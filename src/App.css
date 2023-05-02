@@ -36,3 +36,41 @@
     transform: rotate(360deg);
   }
 }
+.header{
+  background: #00a0e9;
+  display: flex;
+  align-items: center;
+  padding-inline: 0;
+  justify-content: space-between;
+}
+.headerIconDiv{
+  position: relative;
+  padding: 10px 0px 10px 20px;
+}
+.headerIcon{
+  color :#fff;
+  font-size: 24px;
+  font-weight: bolder;
+}
+.headerIconSettingDiv {
+  position: relative;
+  padding: 10px 20px 10px 0px;
+}
+.headerTitle{
+  color: #fff;
+}
+.content{
+  background-image: url("./assets/images/bj2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height:57.43rem;
+}
+.footer{
+    background: #00a0e9;
+    padding: 0;
+    height:6.25rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
