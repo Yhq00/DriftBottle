@@ -1,0 +1,26 @@
+.body {
+  background: url("../../assets/images/bj2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 38rem;
+}
+.footer {
+  background: #00a0e9;
+  padding: 0;
+  height: 7.1rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.menu {
+  background: #00a0e9;
+  //   width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: none;
+}
+.menu * {
+  justify-content: center;
+}
