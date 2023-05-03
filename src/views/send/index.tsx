@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./index.module.scss";
 import { Menu, MenuProps, Input } from "antd";
 import { useNavigate, To } from "react-router-dom";
 import throwBottle from "../../assets/images/throw.png";
+import bottle from "../../assets/images/bottle.png";
 const Send = () => {
   type MenuItem = Required<MenuProps>["items"][number];
 
@@ -32,37 +33,61 @@ const Send = () => {
         }}
         alt="throw bottle"
       />,
-      "/Send"
+      "/"
     ),
   ];
   const navigate = useNavigate();
   const onClick = (e: { key: To }) => {
+    setIsSend(true);
+    const myElement = myRef.current;
+    alert(myElement);
     // console.log("click ", e);
-    navigate(e.key);
+    // navigate(e.key);
   };
   const { TextArea } = Input;
+  const [isSend, setIsSend] = useState(false);
+  const myRef = useRef(null);
+  const goToMain = () => {
+    navigate("/");
+  };
   return (
     <>
-      <div>
-        <div className={styles.body}>
-          <TextArea
-            style={{
-              width: "80%",
-              height: "70%",
-              margin: "5rem 0rem 6rem 10rem",
-            }}
-            placeholder="你可以在这畅所欲言"
-          ></TextArea>
+      {!isSend ? (
+        <div>
+          <div className={styles.body}>
+            <TextArea
+              style={{
+                width: "80%",
+                height: "70%",
+                margin: "5rem 0rem 6rem 10rem",
+              }}
+              placeholder="你可以在这畅所欲言"
+            ></TextArea>
+          </div>
+          <div className={styles.footer}>
+            <Menu
+              mode="horizontal"
+              className={styles.menu}
+              onClick={onClick}
+              items={items}
+            ></Menu>
+          </div>
         </div>
-        <div className={styles.footer}>
-          <Menu
-            mode="horizontal"
-            className={styles.menu}
-            onClick={onClick}
-            items={items}
-          ></Menu>
+      ) : (
+        <div>
+          <div className={styles.body}></div>
+          <div className={styles.footers}>
+            <img
+              ref={myRef}
+              className={styles.bottle}
+              src={bottle}
+              alt="bottle"
+              style={{ width: "5rem", height: "5rem" }}
+              onAnimationEnd={() => goToMain()}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

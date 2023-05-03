@@ -24,3 +24,43 @@
 .menu * {
   justify-content: center;
 }
+.footers {
+  background: #00a0e9;
+  padding: 0;
+  height: 7.1rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bottle {
+  position: absolute;
+  //   -webkit-animation: rotating 1.5s linear 1;
+  //   -moz-animation: rotating 1.5s linear 1;
+  //   -o-animation: rotating 1.5s linear 1;
+  animation: rotating 1.5s linear 1;
+}
+@keyframes rotating {
+  from {
+    transform: rotate(0);
+    left: 750px;
+    top: 440px;
+  }
+  to {
+    transform: rotate(360deg);
+    left: 100px;
+    top: 270px;
+  }
+}
+@-webkit-keyframes rotating {
+  from {
+    transform: rotate(0);
+    left: 750px;
+    top: 440px;
+  }
+  to {
+    transform: rotate(360deg);
+    left: 100px;
+    top: 270px;
+  }
+}
