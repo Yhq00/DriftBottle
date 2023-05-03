@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Send extends Component {
   render() {
-    return <div>11</div>;
+    return <div>Send</div>;
   }
 }
 

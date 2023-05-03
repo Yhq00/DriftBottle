@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Get extends Component {
   render() {
-    return <div>224</div>;
+    return <div>Get</div>;
   }
 }
 
