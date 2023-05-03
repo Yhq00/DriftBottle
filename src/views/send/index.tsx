@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./index.module.scss";
-import { Menu, MenuProps, Input } from "antd";
+import { Menu, MenuProps, Input, message } from "antd";
 import { useNavigate, To } from "react-router-dom";
 import throwBottle from "../../assets/images/throw.png";
 import bottle from "../../assets/images/bottle.png";
@@ -39,15 +39,13 @@ const Send = () => {
   const navigate = useNavigate();
   const onClick = (e: { key: To }) => {
     setIsSend(true);
-    const myElement = myRef.current;
-    alert(myElement);
     // console.log("click ", e);
     // navigate(e.key);
   };
   const { TextArea } = Input;
   const [isSend, setIsSend] = useState(false);
-  const myRef = useRef(null);
   const goToMain = () => {
+    message.success("期待回信吧！");
     navigate("/");
   };
   return (
@@ -78,7 +76,6 @@ const Send = () => {
           <div className={styles.body}></div>
           <div className={styles.footers}>
             <img
-              ref={myRef}
               className={styles.bottle}
               src={bottle}
               alt="bottle"

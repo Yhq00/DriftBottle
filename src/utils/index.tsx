@@ -27,8 +27,6 @@ const router = [
       style={{
         width: "5rem",
         height: "5rem",
-        flexBasis: "0",
-        flexGrow: "1",
       }}
       alt="throw bottle"
     />,
@@ -40,8 +38,6 @@ const router = [
       style={{
         width: "5rem",
         height: "5rem",
-        flexBasis: "0",
-        flexGrow: "1",
       }}
       alt="get bottle"
     />,
@@ -53,8 +49,6 @@ const router = [
       style={{
         width: "5rem",
         height: "5rem",
-        flexBasis: "0",
-        flexGrow: "1",
       }}
       alt="My bottle"
     />,

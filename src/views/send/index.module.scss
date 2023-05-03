@@ -35,9 +35,9 @@
 }
 .bottle {
   position: absolute;
-  //   -webkit-animation: rotating 1.5s linear 1;
-  //   -moz-animation: rotating 1.5s linear 1;
-  //   -o-animation: rotating 1.5s linear 1;
+  -webkit-animation: rotating 1.5s linear 1;
+  -moz-animation: rotating 1.5s linear 1;
+  -o-animation: rotating 1.5s linear 1;
   animation: rotating 1.5s linear 1;
 }
 @keyframes rotating {
