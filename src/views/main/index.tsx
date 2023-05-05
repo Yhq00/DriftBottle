@@ -1,14 +1,19 @@
-import React, { RefObject, useRef } from "react";
-import { Menu } from "antd";
+import React, { RefObject, useRef, useState } from "react";
+import { Menu, Button, Modal } from "antd";
 import { useNavigate, To } from "react-router-dom";
 import styles from "./index.module.scss";
 import type { MenuProps } from "antd";
 import throwBottle from "../../assets/images/throw.png";
 import getBottle from "../../assets/images/getBottle.png";
 import myBottle from "../../assets/images/myBottle.png";
+import gotoNet from "../../assets/images/www.png";
+import open from "../../assets/images/open.png";
+import bottle from "../../assets/images/bottle.png";
 const Main = () => {
   const navigate = useNavigate();
   const myRef = useRef();
+  const myRefs = useRef();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   type MenuItem = Required<MenuProps>["items"][number];
 
   function getItem(
@@ -41,7 +46,10 @@ const Main = () => {
     getItem(
       <img
         src={getBottle}
-        className={styles.www}
+        style={{
+          width: "5rem",
+          height: "5rem",
+        }}
         alt="get bottle"
         ref={myRef as unknown as RefObject<HTMLImageElement>}
         onAnimationEnd={() => {
@@ -64,15 +72,41 @@ const Main = () => {
   ];
   const onClick = (e: { key: To }) => {
     if (e.key === "/Get") {
-      // alert("1121");
       const sentDom = myRef.current;
       //@ts-ignore
-      sentDom.style.animationPlayState = "running";
+      sentDom.style.display = "inline";
       //@ts-ignore
-      // sentDom.style.animationPlayState = "paused";
+      sentDom.style.animationPlayState = "running";
     } else {
       navigate(e.key);
     }
+  };
+  const handleEnd = () => {
+    const sentDom = myRef.current;
+    //@ts-ignore
+    // sentDom.style.animationPlayState = "running";
+    const first = async () => {
+      //@ts-ignore
+      sentDom.style.display = "none";
+      await new Promise((resolve) => setTimeout(resolve, 10));
+      setIsModalOpen(true);
+    };
+    first();
+  };
+  const handleEnds = () => {
+    const sentDom = myRefs.current;
+    //@ts-ignore
+    sentDom.style.display = "none";
+  };
+  const handleOk = () => {
+    navigate("/Get");
+  };
+
+  const handleCancel = () => {
+    const sentDom = myRefs.current;
+    setIsModalOpen(false);
+    //@ts-ignore
+    sentDom.style.display = "inline";
   };
   return (
     <>
@@ -82,6 +116,29 @@ const Main = () => {
         onClick={onClick}
         items={items}
       ></Menu>
+      <img
+        src={gotoNet}
+        ref={myRef as unknown as RefObject<HTMLImageElement>}
+        className={styles.www}
+        alt="gotoNet"
+        onAnimationEnd={handleEnd}
+      />
+      <img
+        src={bottle}
+        ref={myRefs as unknown as RefObject<HTMLImageElement>}
+        className={styles.throw}
+        alt="bottle"
+        onAnimationEnd={handleEnds}
+      />
+      <Modal
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        cancelText={"扔回大海"}
+        okText={"打开回复"}
+      >
+        <img src={open} className={styles.open} alt="open" />
+      </Modal>
     </>
   );
 };

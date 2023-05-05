@@ -5,33 +5,76 @@
   align-items: center;
   border-bottom: none;
   padding-top: 1rem;
+  justify-content: center;
 }
 .menu * {
-  justify-content: center;
-  margin-left: 9rem;
+  margin-left: 6rem;
+  align-items: center;
 }
 .www {
+  display: none;
+  position: absolute;
   width: 5rem;
   height: 5rem;
-  position: relative;
-  animation: get 1.5s linear 1;
+  top: 25rem;
+  left: 44rem;
+  animation: get 3s linear 1;
   -webkit-animation: get 1.5s linear 1;
   -moz-animation: get 1.5s linear 1;
   -o-animation: get 1.5s linear 1;
   transform-origin: 50% 50%;
-  animation-play-state: paused;
-  animation-fill-mode: forwards;
+  // animation-play-state: paused;
+  // animation-fill-mode: forwards;
 }
 
 @keyframes get {
+  0% {
+    transform: rotateZ(0deg);
+    left: 44rem;
+    top: 25rem;
+  }
+  25% {
+    transform: rotateZ(45deg);
+    left: 44rem;
+    top: 25rem;
+  }
+  50% {
+    transform: rotateZ(0deg);
+    left: 44rem;
+    top: 25rem;
+  }
+  100% {
+    transform: rotateZ(45deg);
+    left: 44rem;
+    top: 25rem;
+  }
+}
+.open {
+  position: relative;
+  left: 6rem;
+}
+.throw {
+  display: none;
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  top: 25rem;
+  left: 44rem;
+  animation: throw 1.5s linear 1;
+  -webkit-animation: throw 1.5s linear 1;
+  -moz-animation: throw 1.5s linear 1;
+  -o-animation: throw 1.5s linear 1;
+  // transform-origin: 50% 50%;
+}
+@keyframes throw {
   from {
-    transform: rotate(0);
-    left: 50px;
-    top: 0px;
+    transform: rotate(0deg);
+    left: 44rem;
+    top: 40rem;
   }
   to {
     transform: rotate(360deg);
-    left: -100px;
-    top: -270px;
+    left: 34rem;
+    top: 15rem;
   }
 }
