@@ -1,5 +1,5 @@
 import React, { RefObject, useRef, useState } from "react";
-import { Menu, Button, Modal } from "antd";
+import { Menu, Modal } from "antd";
 import { useNavigate, To } from "react-router-dom";
 import styles from "./index.module.scss";
 import type { MenuProps } from "antd";

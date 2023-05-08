@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import styles from "./index.module.scss";
 import { Menu, MenuProps, Input, message } from "antd";
 import { useNavigate, To } from "react-router-dom";
 import throwBottle from "../../assets/images/throw.png";
 import bottle from "../../assets/images/bottle.png";
+import { addText } from "../../service/text";
 const Send = () => {
   type MenuItem = Required<MenuProps>["items"][number];
 
@@ -37,10 +38,19 @@ const Send = () => {
     ),
   ];
   const navigate = useNavigate();
+  interface textBody {
+    userId: string;
+    textContent: string;
+  }
   const onClick = (e: { key: To }) => {
     setIsSend(true);
-    // console.log("click ", e);
-    // navigate(e.key);
+    const textBody: textBody = {
+      userId: userId.toString(),
+      textContent: textContent,
+    };
+    addText(textBody).then((res) => {
+      console.log(res);
+    });
   };
   const { TextArea } = Input;
   const [isSend, setIsSend] = useState(false);
@@ -48,6 +58,8 @@ const Send = () => {
     message.success("期待回信吧！");
     navigate("/");
   };
+  const [userId, setUserId] = useState(Math.floor(Math.random() * 10000) + 1);
+  const [textContent, setTextContent] = useState("");
   return (
     <>
       {!isSend ? (
@@ -60,6 +72,8 @@ const Send = () => {
                 margin: "5rem 0rem 6rem 10rem",
               }}
               placeholder="你可以在这畅所欲言"
+              value={textContent}
+              onChange={(e) => setTextContent(e.target.value)}
             ></TextArea>
           </div>
           <div className={styles.footer}>
