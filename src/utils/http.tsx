@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { AxiosRequestConfig, AxiosResponse } from "axios";
-import { message } from "antd";
+// import { message } from "antd";
 
 const instance = axios.create({
   baseURL: "http://127.0.0.1:8080/",
@@ -38,7 +38,7 @@ interface Http {
 }
 
 const goLogin = (res: any) => {
-  console.log("res", res);
+  // console.log("res", res);
   if (res && res.status === 200 && res.data && res.data.success) {
     return res;
   }

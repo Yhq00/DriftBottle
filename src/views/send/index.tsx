@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./index.module.scss";
 import { Menu, MenuProps, Input, message } from "antd";
-import { useNavigate, To } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import throwBottle from "../../assets/images/throw.png";
 import bottle from "../../assets/images/bottle.png";
 import { addText } from "../../service/text";
@@ -39,13 +39,13 @@ const Send = () => {
   ];
   const navigate = useNavigate();
   interface textBody {
-    userId: string;
+    userId: number;
     textContent: string;
   }
-  const onClick = (e: { key: To }) => {
+  const handleSend = () => {
     setIsSend(true);
     const textBody: textBody = {
-      userId: userId.toString(),
+      userId: userId,
       textContent: textContent,
     };
     addText(textBody).then((res) => {
@@ -58,7 +58,7 @@ const Send = () => {
     message.success("期待回信吧！");
     navigate("/");
   };
-  const [userId, setUserId] = useState(Math.floor(Math.random() * 10000) + 1);
+  const userId = Math.floor(Math.random() * 10000) + 1;
   const [textContent, setTextContent] = useState("");
   return (
     <>
@@ -80,7 +80,7 @@ const Send = () => {
             <Menu
               mode="horizontal"
               className={styles.menu}
-              onClick={onClick}
+              onClick={handleSend}
               items={items}
             ></Menu>
           </div>
