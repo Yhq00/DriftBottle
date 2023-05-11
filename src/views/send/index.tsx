@@ -87,7 +87,7 @@ const Send = () => {
         </div>
       ) : (
         <div>
-          <div className={styles.body}></div>
+          <div className={styles.lastBody}></div>
           <div className={styles.footers}>
             <img
               className={styles.bottle}

@@ -9,6 +9,7 @@ const App = lazy(() => import("../App"));
 const Send = lazy(() => import("../views/send"));
 const Get = lazy(() => import("../views/get"));
 const My = lazy(() => import("../views/myBottle"));
+const Login = lazy(() => import("../views/user/login"));
 
 declare module "react-router" {
   interface IndexRouteObject {
@@ -88,6 +89,16 @@ export const routes: RouteObject[] = [
       auth: true,
     },
     name: "my",
+  },
+  {
+    path: "Login",
+    element: <Login></Login>,
+    meta: {
+      menu: true,
+      title: "主页",
+      auth: true,
+    },
+    name: "login",
   },
 ];
 // 使用 createHashRouter 函数来创建一个 HashRouter 路由器

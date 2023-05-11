@@ -20,7 +20,7 @@ function App() {
             <SettingOutlined className="headerIcon" />
           </div>
         </Header>
-        <Content className="content">22</Content>
+        <Content className="content"></Content>
         <Footer className="footer">
           <Main />
         </Footer>
