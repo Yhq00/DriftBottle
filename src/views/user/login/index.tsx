@@ -3,9 +3,13 @@ import styles from "./index.module.scss";
 import { Button, Form, Input } from "antd";
 
 const Login = () => {
-  const initialValues = {
-    username: "",
-    password: "",
+  interface loginBody {
+    userName: string;
+    passWord: string;
+  }
+  const initialValues: loginBody = {
+    userName: "",
+    passWord: "",
   };
   const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
