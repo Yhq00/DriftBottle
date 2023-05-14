@@ -39,13 +39,14 @@ declare module "react-router" {
 export const routes: RouteObject[] = [
   {
     path: "/",
-    element: <App />,
-    name: "main",
+    element: <Login></Login>,
+    name: "login",
     meta: {
       menu: true,
       title: "页面",
       auth: true,
     },
+
     // children: [
     //   // main
     //   {
@@ -59,6 +60,16 @@ export const routes: RouteObject[] = [
     //     name: "send",
     //   },
     // ],
+  },
+  {
+    path: "/main",
+    element: <App></App>,
+    name: "main",
+    meta: {
+      menu: true,
+      title: "页面",
+      auth: true,
+    },
   },
   {
     path: "Send",
@@ -91,7 +102,7 @@ export const routes: RouteObject[] = [
     name: "my",
   },
   {
-    path: "Login",
+    path: "login",
     element: <Login></Login>,
     meta: {
       menu: true,
