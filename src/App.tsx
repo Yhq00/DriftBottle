@@ -28,7 +28,7 @@ function App() {
           </Header>
           <Content className="content"></Content>
           <Footer className="footer">
-            <Main />
+            <Main userId={userId} />
           </Footer>
         </div>
       ) : (

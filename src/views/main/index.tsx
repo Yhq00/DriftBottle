@@ -9,13 +9,12 @@ import myBottle from "../../assets/images/myBottle.png";
 import gotoNet from "../../assets/images/www.png";
 import open from "../../assets/images/open.png";
 import bottle from "../../assets/images/bottle.png";
-const Main = () => {
+const Main = (userId: any) => {
   const navigate = useNavigate();
   const myRef = useRef();
   const myRefs = useRef();
   const [isModalOpen, setIsModalOpen] = useState(false);
   type MenuItem = Required<MenuProps>["items"][number];
-
   function getItem(
     label: React.ReactNode,
     key?: React.Key | null,
@@ -52,9 +51,9 @@ const Main = () => {
         }}
         alt="get bottle"
         ref={myRef as unknown as RefObject<HTMLImageElement>}
-        onAnimationEnd={() => {
-          // navigate("/Get");
-        }}
+        // onAnimationEnd={() => {
+        //   // navigate("/Get");
+        // }}
       />,
       "/Get"
     ),
@@ -78,7 +77,7 @@ const Main = () => {
       //@ts-ignore
       sentDom.style.animationPlayState = "running";
     } else {
-      navigate(e.key);
+      navigate(e.key, { state: { userId } });
     }
   };
   const handleEnd = () => {
@@ -99,7 +98,7 @@ const Main = () => {
     sentDom.style.display = "none";
   };
   const handleOk = () => {
-    navigate("/Get");
+    navigate("/Get", { state: { userId } });
   };
 
   const handleCancel = () => {
