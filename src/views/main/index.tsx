@@ -40,7 +40,7 @@ const Main = (userId: any) => {
         }}
         alt="throw bottle"
       />,
-      "/Send"
+      "/send"
     ),
     getItem(
       <img
@@ -55,7 +55,7 @@ const Main = (userId: any) => {
         //   // navigate("/Get");
         // }}
       />,
-      "/Get"
+      "/get"
     ),
     getItem(
       <img
@@ -66,11 +66,11 @@ const Main = (userId: any) => {
         }}
         alt="My bottle"
       />,
-      "/My"
+      "/my"
     ),
   ];
   const onClick = (e: { key: To }) => {
-    if (e.key === "/Get") {
+    if (e.key === "/get") {
       const sentDom = myRef.current;
       //@ts-ignore
       sentDom.style.display = "inline";
@@ -98,7 +98,7 @@ const Main = (userId: any) => {
     sentDom.style.display = "none";
   };
   const handleOk = () => {
-    navigate("/Get", { state: { userId } });
+    navigate("/get", { state: { userId } });
   };
 
   const handleCancel = () => {
