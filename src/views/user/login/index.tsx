@@ -23,7 +23,7 @@ const Login = () => {
     login(initialValues).then((res) => {
       if (res.data.code === 200) {
         message.success("登录成功！");
-        navigate("/", { state: { userId: res.data.data.userId } });
+        navigate("/main", { state: { userId: res.data.data.userId } });
       } else {
         message.error("用户名或密码错误！");
       }
