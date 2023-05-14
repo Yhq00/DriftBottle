@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./index.module.scss";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
+import { login } from "../../../service/user";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   interface loginBody {
@@ -11,8 +13,21 @@ const Login = () => {
     userName: "",
     passWord: "",
   };
+  const navigate = useNavigate();
   const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+    // console.log("Received values of form: ", values);
+    const initialValues: loginBody = {
+      userName: values.userName,
+      passWord: values.passWord,
+    };
+    login(initialValues).then((res) => {
+      if (res.data.code === 200) {
+        message.success("登录成功！");
+        navigate("/", { state: { userId: res.data.data.userId } });
+      } else {
+        message.error("用户名或密码错误！");
+      }
+    });
   };
   return (
     <>
