@@ -10,7 +10,7 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const userId = location.state?.userId;
-  // console.log(userId);
+  // console.log("userId:", userId);
   return (
     <>
       {typeof userId !== "undefined" ? (

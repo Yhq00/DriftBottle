@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./index.module.scss";
 import { Menu, MenuProps, Input, message } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import throwBottle from "../../assets/images/throw.png";
 import bottle from "../../assets/images/bottle.png";
 import { addText } from "../../service/text";
@@ -45,7 +45,7 @@ const Send = () => {
   const handleSend = () => {
     setIsSend(true);
     const textBody: textBody = {
-      userId: userId,
+      userId: userId.userId,
       textContent: textContent,
     };
     addText(textBody).then((res) => {
@@ -56,9 +56,10 @@ const Send = () => {
   const [isSend, setIsSend] = useState(false);
   const goToMain = () => {
     message.success("期待回信吧！");
-    navigate("/");
+    navigate("/main", { state: userId });
   };
-  const userId = Math.floor(Math.random() * 10000) + 1;
+  const location = useLocation();
+  const userId = location.state?.userId;
   const [textContent, setTextContent] = useState("");
   return (
     <>
