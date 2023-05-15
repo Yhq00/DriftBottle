@@ -2,7 +2,7 @@ import React, { RefObject, useRef, useState, useEffect } from "react";
 import styles from "./index.module.scss";
 import loading from "../../assets/images/loading1.png";
 import bottle from "../../assets/images/bottle.png";
-import { Button, Input, message } from "antd";
+import { Button, Empty, Input, message } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import { findText, addReply } from "../../service/text";
 const Get = () => {
@@ -61,70 +61,92 @@ const Get = () => {
   };
   return (
     <>
-      <div className={styles.body}>
-        {isShow && (
-          <div>
-            <div className={styles.header}>
-              <div>
-                <img src={loading} className={styles.headerImg} alt="loading" />
-              </div>
-              <div className={styles.headerMiddle}>
-                <h1 className={styles.headerH}>漂流瓶</h1>
-              </div>
-              <div className={styles.headerBtn}>
-                <Button type="primary" danger>
-                  举报
-                </Button>
-              </div>
-            </div>
+      {typeof userIds !== "undefined" ? (
+        <div className={styles.body}>
+          {isShow && (
             <div>
-              <TextArea
-                style={{
-                  width: "80%",
-                  height: "400px",
-                  margin: "5px 0px 10px 180px",
-                  color: "white",
-                }}
-                value={textContent}
-                disabled={true}
-              ></TextArea>
-            </div>
-            <div className={styles.footer}>
-              {isReply && (
+              <div className={styles.header}>
+                <div>
+                  <img
+                    src={loading}
+                    className={styles.headerImg}
+                    alt="loading"
+                  />
+                </div>
+                <div className={styles.headerMiddle}>
+                  <h1 className={styles.headerH}>漂流瓶</h1>
+                </div>
+                <div className={styles.headerBtn}>
+                  <Button type="primary" danger>
+                    举报
+                  </Button>
+                </div>
+              </div>
+              <div>
                 <TextArea
                   style={{
-                    width: "89%",
-                    height: "100px",
-                    margin: "5px 0px 10px 30px",
+                    width: "80%",
+                    height: "400px",
+                    margin: "5px 0px 10px 180px",
+                    color: "white",
                   }}
-                  onChange={(e) => setReplyContent(e.target.value)}
-                  value={replyContent}
+                  value={textContent}
+                  disabled={true}
                 ></TextArea>
-              )}
+              </div>
+              <div className={styles.footer}>
+                {isReply && (
+                  <TextArea
+                    style={{
+                      width: "89%",
+                      height: "100px",
+                      margin: "5px 0px 10px 30px",
+                    }}
+                    onChange={(e) => setReplyContent(e.target.value)}
+                    value={replyContent}
+                  ></TextArea>
+                )}
 
-              <div className={styles.footerBtn}>
-                <Button style={{ marginLeft: "300px" }} onClick={handleCancel}>
-                  扔回大海
-                </Button>
-                <Button
-                  style={{ marginRight: "300px" }}
-                  type="primary"
-                  onClick={handleReply}
-                >
-                  回复
-                </Button>
+                <div className={styles.footerBtn}>
+                  <Button
+                    style={{ marginLeft: "300px" }}
+                    onClick={handleCancel}
+                  >
+                    扔回大海
+                  </Button>
+                  <Button
+                    style={{ marginRight: "300px" }}
+                    type="primary"
+                    onClick={handleReply}
+                  >
+                    回复
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
-        )}
-        <img
-          src={bottle}
-          ref={myRefs as unknown as RefObject<HTMLImageElement>}
-          className={styles.throw}
-          alt="bottle"
-          onAnimationEnd={handleEnds}
-        />
-      </div>
+          )}
+          <img
+            src={bottle}
+            ref={myRefs as unknown as RefObject<HTMLImageElement>}
+            className={styles.throw}
+            alt="bottle"
+            onAnimationEnd={handleEnds}
+          />
+        </div>
+      ) : (
+        <Empty
+          description={
+            <Button
+              type="primary"
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              您还未登录，请先登录！！
+            </Button>
+          }
+        ></Empty>
+      )}
     </>
   );
 };
