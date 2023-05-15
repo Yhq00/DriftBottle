@@ -26,8 +26,9 @@ type rePlyBody = {
 };
 
 export const addReply = async (rePlyBody: rePlyBody) => {
+  console.log(rePlyBody);
   const res = await http.post("/logic/text/addReply", {
-    textId: rePlyBody.userId,
+    textId: rePlyBody.textId,
     userId: rePlyBody.userId,
     replyContent: rePlyBody.replyContent,
   });

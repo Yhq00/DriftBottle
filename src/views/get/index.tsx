@@ -3,15 +3,17 @@ import styles from "./index.module.scss";
 import loading from "../../assets/images/loading1.png";
 import bottle from "../../assets/images/bottle.png";
 import { Button, Input, message } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { findText, addReply } from "../../service/text";
 const Get = () => {
   const [isShow, setIsShow] = useState(true);
   const { TextArea } = Input;
   const myRefs = useRef();
   const navigate = useNavigate();
+  const location = useLocation();
+  const userIds = location.state?.userId;
   const handleEnds = () => {
-    navigate("/");
+    navigate("/main", { state: userIds });
   };
   const handleCancel = () => {
     setIsShow(false);
@@ -41,7 +43,7 @@ const Get = () => {
     setIsReply(true);
     const rePlay: replyBody = {
       textId: textId,
-      userId: userId,
+      userId: userIds.userId,
       replyContent: replyContent,
     };
     if (rePlay.replyContent !== "" && rePlay.userId !== 0) {
