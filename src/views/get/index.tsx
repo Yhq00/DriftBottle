@@ -22,6 +22,8 @@ const Get = () => {
     sentDom.style.display = "inline";
   };
   const [replyContent, setReplyContent] = useState("");
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [userId, setUserId] = useState(0);
   const [textId, setTextId] = useState(0);
   const [isReply, setIsReply] = useState(false);
