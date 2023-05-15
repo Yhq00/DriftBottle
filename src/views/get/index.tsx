@@ -135,16 +135,7 @@ const Get = () => {
         </div>
       ) : (
         <Empty
-          description={
-            <Button
-              type="primary"
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
-              您还未登录，请先登录！！
-            </Button>
-          }
+          description={<Empty description={<span>非法跳转！！</span>}></Empty>}
         ></Empty>
       )}
     </>

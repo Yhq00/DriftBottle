@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./index.module.scss";
-import { Menu, MenuProps, Input, message } from "antd";
+import { Menu, MenuProps, Input, message, Empty } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import throwBottle from "../../assets/images/throw.png";
 import bottle from "../../assets/images/bottle.png";
@@ -63,42 +63,46 @@ const Send = () => {
   const [textContent, setTextContent] = useState("");
   return (
     <>
-      {!isSend ? (
-        <div>
-          <div className={styles.body}>
-            <TextArea
-              style={{
-                width: "80%",
-                height: "70%",
-                margin: "5rem 0rem 6rem 10rem",
-              }}
-              placeholder="你可以在这畅所欲言"
-              value={textContent}
-              onChange={(e) => setTextContent(e.target.value)}
-            ></TextArea>
+      {typeof userId !== "undefined" ? (
+        !isSend ? (
+          <div>
+            <div className={styles.body}>
+              <TextArea
+                style={{
+                  width: "80%",
+                  height: "70%",
+                  margin: "5rem 0rem 6rem 10rem",
+                }}
+                placeholder="你可以在这畅所欲言"
+                value={textContent}
+                onChange={(e) => setTextContent(e.target.value)}
+              ></TextArea>
+            </div>
+            <div className={styles.footer}>
+              <Menu
+                mode="horizontal"
+                className={styles.menu}
+                onClick={handleSend}
+                items={items}
+              ></Menu>
+            </div>
           </div>
-          <div className={styles.footer}>
-            <Menu
-              mode="horizontal"
-              className={styles.menu}
-              onClick={handleSend}
-              items={items}
-            ></Menu>
+        ) : (
+          <div>
+            <div className={styles.lastBody}></div>
+            <div className={styles.footers}>
+              <img
+                className={styles.bottle}
+                src={bottle}
+                alt="bottle"
+                style={{ width: "5rem", height: "5rem" }}
+                onAnimationEnd={() => goToMain()}
+              />
+            </div>
           </div>
-        </div>
+        )
       ) : (
-        <div>
-          <div className={styles.lastBody}></div>
-          <div className={styles.footers}>
-            <img
-              className={styles.bottle}
-              src={bottle}
-              alt="bottle"
-              style={{ width: "5rem", height: "5rem" }}
-              onAnimationEnd={() => goToMain()}
-            />
-          </div>
-        </div>
+        <Empty description={<span>非法跳转！！</span>}></Empty>
       )}
     </>
   );
