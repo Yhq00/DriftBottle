@@ -26,11 +26,23 @@ type rePlyBody = {
 };
 
 export const addReply = async (rePlyBody: rePlyBody) => {
-  console.log(rePlyBody);
+  // console.log(rePlyBody);
   const res = await http.post("/logic/text/addReply", {
     textId: rePlyBody.textId,
     userId: rePlyBody.userId,
     replyContent: rePlyBody.replyContent,
   });
+  return res;
+};
+
+export const getMyBottles = async (userId: any) => {
+  const res = await http.post(
+    "/logic/text/getMyBottle",
+    {
+      userId: userId,
+    },
+    {},
+    "upload"
+  );
   return res;
 };

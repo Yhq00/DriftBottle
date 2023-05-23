@@ -11,7 +11,8 @@ interface Http {
   get: (
     url: string,
     data?: any,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
+    type?: "upload"
   ) => Promise<AxiosResponse>;
   post: (
     url: string,
@@ -47,15 +48,34 @@ const goLogin = (res: any) => {
 };
 
 const http: Http = {
-  get(url, data, config) {
-    return instance
-      .get(url, {
-        params: data,
-        ...config,
-      })
-      .then((res) => {
-        return goLogin(res);
+  get(url, data, config, type) {
+    if (type === "upload") {
+      const formData = new FormData();
+      Object.keys(data).forEach((key) => {
+        formData.append(key, data[key]);
       });
+      return instance
+        .get(url, {
+          params: formData,
+          ...config,
+          headers: {
+            "Content-Type": "multipart/form-data",
+            ...config?.headers,
+          },
+        })
+        .then((res) => {
+          return goLogin(res);
+        });
+    } else {
+      return instance
+        .get(url, {
+          params: data,
+          ...config,
+        })
+        .then((res) => {
+          return goLogin(res);
+        });
+    }
   },
   post(url, data, config, type) {
     if (!data) {

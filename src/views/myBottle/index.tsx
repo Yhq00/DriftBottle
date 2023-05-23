@@ -1,11 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import { useLocation } from "react-router-dom";
-import { Empty, Card } from "antd";
+import { Empty, Card, message } from "antd";
+import { getMyBottles } from "../../service/text";
 const MyBottle = () => {
   const location = useLocation();
   const userId = location.state?.userId;
-  useEffect(() => {}, []);
+  const [textList, setTextList] = useState();
+  useEffect(() => {
+    getMyBottles(userId.userId).then((res) => {
+      if (res.status === 200) {
+        setTextList(res.data.data);
+      } else {
+        message.error("请求失败！");
+      }
+    });
+  }, []);
+  // const ListCard;
   return (
     <>
       {typeof userId !== "undefined" ? (
