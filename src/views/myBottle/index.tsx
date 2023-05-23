@@ -6,7 +6,7 @@ import { getMyBottles } from "../../service/text";
 const MyBottle = () => {
   const location = useLocation();
   const userId = location.state?.userId;
-  const [textList, setTextList] = useState();
+  const [textList, setTextList] = useState<any>([]);
   useEffect(() => {
     getMyBottles(userId.userId).then((res) => {
       console.log(res.data);
@@ -25,15 +25,21 @@ const MyBottle = () => {
       }
     });
   }, []);
-  // const ListCard;
+  const listCard = () => {
+    return textList.map((item: any) => {
+      return (
+        <>
+          <Card>{item.textContent}</Card>
+        </>
+      );
+    });
+  };
   return (
     <>
       {typeof userId !== "undefined" ? (
         <div className={styles.body}>
           <div className={styles.header}>我的瓶子</div>
-          <div>
-            <Card></Card>
-          </div>
+          {listCard()}
         </div>
       ) : (
         <Empty description={<span>非法跳转！！</span>}></Empty>
