@@ -9,8 +9,17 @@ const MyBottle = () => {
   const [textList, setTextList] = useState();
   useEffect(() => {
     getMyBottles(userId.userId).then((res) => {
+      console.log(res.data);
       if (res.status === 200) {
-        setTextList(res.data.data);
+        if (res.data.code === 200) {
+          if (res.data.data.length !== 0) {
+            setTextList(res.data.data);
+          } else {
+            message.info("你还没有发布过内容噢！");
+          }
+        } else {
+          message.info("后端错误联系管理员！");
+        }
       } else {
         message.error("请求失败！");
       }

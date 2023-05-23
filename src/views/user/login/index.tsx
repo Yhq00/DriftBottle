@@ -10,8 +10,8 @@ const Login = () => {
     passWord: string;
   }
   const initialValues: loginBody = {
-    userName: "",
-    passWord: "",
+    userName: "123",
+    passWord: "123",
   };
   const navigate = useNavigate();
   const onFinish = (values: any) => {
