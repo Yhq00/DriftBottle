@@ -46,3 +46,10 @@ export const getMyBottles = async (userId: any) => {
   );
   return res;
 };
+export const getDetail = async (textId: string) => {
+  const res = await http.post("/logic/text/getDetail", {
+    textId: textId,
+  });
+  console.log(res);
+  return res;
+};
