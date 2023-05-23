@@ -1,9 +1,12 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-class index extends Component {
-  render() {
-    return <div></div>;
-  }
-}
+const Detail = () => {
+  // const navigate = useNavigate();
+  const location = useLocation();
+  const textId = location.state;
+  useEffect(() => {}, []);
+  return <>{textId}</>;
+};
 
-export default index;
+export default Detail;

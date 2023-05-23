@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Empty, Card, message, Tooltip } from "antd";
 import { getMyBottles } from "../../service/text";
 import Bottle from "../../assets/images/bottle.png";
@@ -28,8 +28,10 @@ const MyBottle = () => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const navigate = useNavigate();
   const lookDetails = (textId: string) => {
     console.log(textId);
+    navigate("/my/details", { state: textId });
   };
 
   const listCard = () => {

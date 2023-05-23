@@ -10,7 +10,7 @@ const Send = lazy(() => import("../views/send"));
 const Get = lazy(() => import("../views/get"));
 const My = lazy(() => import("../views/myBottle"));
 const Login = lazy(() => import("../views/user/login"));
-
+const Detail = lazy(() => import("../views/myBottle/detail"));
 declare module "react-router" {
   interface IndexRouteObject {
     meta?: {
@@ -100,6 +100,28 @@ export const routes: RouteObject[] = [
       auth: true,
     },
     name: "my",
+    // children: [
+    //   {
+    //     path: "details",
+    //     element: <Detail></Detail>,
+    //     meta: {
+    //       menu: true,
+    //       title: "详情",
+    //       auth: true,
+    //     },
+    //     name: "details",
+    //   },
+    // ],
+  },
+  {
+    path: "my/details",
+    element: <Detail></Detail>,
+    meta: {
+      menu: true,
+      title: "详情",
+      auth: true,
+    },
+    name: "details",
   },
   {
     path: "login",
