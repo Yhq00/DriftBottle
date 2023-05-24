@@ -53,3 +53,10 @@ export const getDetail = async (textId: string) => {
   console.log(res);
   return res;
 };
+
+export const deBottle = async (textId: string) => {
+  const res = await http.post("/logic/text/delBottle", {
+    textId: textId,
+  });
+  return res;
+};

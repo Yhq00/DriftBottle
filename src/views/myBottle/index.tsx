@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Empty, Card, message, Tooltip } from "antd";
-import { getMyBottles } from "../../service/text";
+import { getMyBottles, deBottle } from "../../service/text";
 import Bottle from "../../assets/images/bottle.png";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 const MyBottle = () => {
@@ -30,14 +30,27 @@ const MyBottle = () => {
   }, []);
   const navigate = useNavigate();
   const lookDetails = (textId: string, textContent: any) => {
-    console.log(textId);
+    // console.log(textId);
     navigate("/my/details", {
       state: { textId: textId, textContent: textContent },
     });
   };
-
+  const deleteBottle = (textId: string) => {
+    deBottle(textId).then((res: any) => {
+      console.log(res);
+      if (res.status === 200) {
+        if (res.data.code === 200) {
+          message.success("瓶子被你打碎了！");
+          window.location.reload();
+        }
+      } else {
+        message.error("请求失败！");
+      }
+    });
+  };
   const listCard = () => {
     return textList.map((item: any) => {
+      // console.log(item);
       return (
         <Card
           key={item.textId}
@@ -51,7 +64,10 @@ const MyBottle = () => {
               />
             </Tooltip>,
             <Tooltip title="打碎瓶子">
-              <DeleteOutlined key="del" />
+              <DeleteOutlined
+                key="del"
+                onClick={() => deleteBottle(item.textId)}
+              />
             </Tooltip>,
           ]}
         >
