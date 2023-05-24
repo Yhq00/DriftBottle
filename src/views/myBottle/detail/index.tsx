@@ -5,11 +5,12 @@ import { getDetail } from "../../../service/text";
 const Detail = () => {
   // const navigate = useNavigate();
   const location = useLocation();
-  const textId = location.state;
+  const textId = location.state?.textId;
+  const textContent = location.state?.textContent;
   useEffect(() => {
     getDetail(textId);
   }, []);
-  return <>{textId}</>;
+  return <>{textContent}</>;
 };
 
 export default Detail;

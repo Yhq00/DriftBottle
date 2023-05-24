@@ -29,9 +29,11 @@ const MyBottle = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const navigate = useNavigate();
-  const lookDetails = (textId: string) => {
+  const lookDetails = (textId: string, textContent: any) => {
     console.log(textId);
-    navigate("/my/details", { state: textId });
+    navigate("/my/details", {
+      state: { textId: textId, textContent: textContent },
+    });
   };
 
   const listCard = () => {
@@ -45,7 +47,7 @@ const MyBottle = () => {
             <Tooltip title="查看详情">
               <EditOutlined
                 key="edit"
-                onClick={() => lookDetails(item.textId)}
+                onClick={() => lookDetails(item.textId, item.textContent)}
               />
             </Tooltip>,
             <Tooltip title="打碎瓶子">
