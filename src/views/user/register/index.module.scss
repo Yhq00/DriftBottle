@@ -1,0 +1,27 @@
+.content {
+  min-width: 520px;
+  background-image: url("../../../assets/images/bj.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .form {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+    font-family: "Courier New", monospace;
+    width: 500px;
+  }
+
+  .input {
+    border-radius: 5px;
+  }
+}
