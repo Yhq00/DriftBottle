@@ -75,6 +75,9 @@ const Login = () => {
                 <Button
                   htmlType="button"
                   className={styles.button + " " + styles.registerButton}
+                  onClick={() => {
+                    navigate("register");
+                  }}
                 >
                   注册
                 </Button>
