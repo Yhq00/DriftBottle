@@ -3,9 +3,8 @@ import type { AxiosRequestConfig, AxiosResponse } from "axios";
 // import { message } from "antd";
 
 const instance = axios.create({
-  baseURL: "http://47.120.11.162:8087/",
-  // baseURL: "http://127.0.0.1:8087/",
-
+  // baseURL: "http://47.120.11.162:8087/",
+  baseURL: "http://127.0.0.1:8087/",
   timeout: 5000,
 });
 
